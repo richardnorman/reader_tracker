@@ -46,22 +46,46 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                child: ListView.builder(
-                  itemCount: _books.length,
-                  itemBuilder: (context, index) {
-                    Book book = _books[index];
-                    return ListTile(
-                      title: Text(book.title),
-                      subtitle: Text(
-                        book.authors.join(", ") ?? "Unknown Author",
-                      ),
-                    );
-                  },
+              child: GridView.builder(
+                itemCount: _books.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.6,
                 ),
+                itemBuilder: (context, index) {
+                  Book book = _books[index];
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surface,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Column(
+                      children: [
+                        Image.network(book.imageLinks['thumbnail'] ?? ''),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
+            // Expanded(
+            //   child: SizedBox(
+            //     width: double.infinity,
+            //     child: ListView.builder(
+            //       itemCount: _books.length,
+            //       itemBuilder: (context, index) {
+            //         Book book = _books[index];
+            //         return ListTile(
+            //           title: Text(book.title),
+            //           subtitle: Text(
+            //             book.authors.join(", ") ?? "Unknown Author",
+            //           ),
+            //         );
+            //       },
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
