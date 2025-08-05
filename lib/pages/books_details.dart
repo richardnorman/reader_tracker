@@ -38,6 +38,32 @@ class _BooksDetailsState extends State<BooksDetails> {
                   Text("Published: ${book.publishedDate}", style: theme.bodySmall),
                   Text("Page Count: ${book.pageCount}", style: theme.bodySmall),
                   Text("Language: ${book.language}", style: theme.bodySmall),
+                  SizedBox(height: 8.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(onPressed: () {}, icon: Icon(Icons.bookmark), label: Text("Save to Reading List")),
+                      ElevatedButton.icon(onPressed: () {}, icon: Icon(Icons.favorite), label: Text("Add to Favorites")),
+                    ],
+                  ),
+                  SizedBox(height: 8.0),
+                  Text("Description", style: theme.titleMedium),
+                  SizedBox(height: 8.0),
+                  Container(
+                    margin: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary.withAlpha(50),
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: Text(
+                      book.description,
+                      style: theme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                  SizedBox(height: 24.0),
                 ],
               ),
             ],

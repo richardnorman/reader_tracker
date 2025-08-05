@@ -42,6 +42,7 @@ class GridViewWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.network(
                       book.imageLinks['thumbnail'] ?? '',
+                      scale: 0.8,
                     ),
                   ),
                   Padding(
