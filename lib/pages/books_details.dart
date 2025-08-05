@@ -12,11 +12,37 @@ class BooksDetails extends StatefulWidget {
 class _BooksDetailsState extends State<BooksDetails> {
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments as BookDetailsArguments;
+    final args =
+        ModalRoute.of(context)?.settings.arguments as BookDetailsArguments;
     final Book book = args.itemBook;
+    final theme = Theme.of(context).textTheme;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(book.title),
+      appBar: AppBar(title: Text(book.title)),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              if (book.imageLinks.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.network(
+                    book.imageLinks['thumbnail'] ?? '',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              Column(
+                children: [
+                  Text(book.title, style: theme.headlineSmall),
+                  Text(book.authors.join(', '), style: theme.labelLarge),
+                  Text("Published: ${book.publishedDate}", style: theme.bodySmall),
+                  Text("Page Count: ${book.pageCount}", style: theme.bodySmall),
+                  Text("Language: ${book.language}", style: theme.bodySmall),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
